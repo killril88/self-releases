@@ -1,0 +1,1 @@
+zhilibyli ALL=(root) NOPASSWD: /usr/local/sbin/zb-front-supervisor

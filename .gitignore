@@ -1,0 +1,29 @@
+# Secrets and runtime environment
+.env
+.env.*
+!.env.example
+**/shared/.env.local
+**/shared/node-*/
+
+# Runtime releases and symlinks
+**/releases/
+**/backups/
+**/current
+**/candidate
+**/previous
+
+# Keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+
+# Local/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log
+__pycache__/
+*.pyc

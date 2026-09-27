@@ -1,0 +1,27 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: zb-front-supervisor {status|candidate-start|candidate-stop|release-restart}" >&2
+    exit 64
+fi
+
+case "$1" in
+    status)
+        exec /usr/bin/supervisorctl status 'zb_node_front_release:*' zb_node_front_candidate
+        ;;
+    candidate-start)
+        /usr/bin/supervisorctl stop zb_node_front_candidate >/dev/null 2>&1 || true
+        exec /usr/bin/supervisorctl start zb_node_front_candidate
+        ;;
+    candidate-stop)
+        exec /usr/bin/supervisorctl stop zb_node_front_candidate
+        ;;
+    release-restart)
+        exec /usr/bin/supervisorctl restart 'zb_node_front_release:*'
+        ;;
+    *)
+        echo "Unsupported action: $1" >&2
+        exit 64
+        ;;
+esac
